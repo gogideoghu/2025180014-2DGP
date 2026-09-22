@@ -37,8 +37,8 @@ def move_circle():
         delay(0.01)
 
 def move_top():
-    print('top')
-    pass
+    for x in range(50, 751, 5):
+        draw_boy(x, 550)
 def move_right():
     print('right')
     pass
