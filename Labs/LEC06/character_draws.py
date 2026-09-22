@@ -13,7 +13,8 @@ update_canvas()
 delay(1)
 close_canvas()
 
-degree = 360
+
+degree = 0
 theta = math.radians(degree)
 x = 400 + 200 * math.cos(theta)
 y = 300 + 200 * math.sin(theta)
@@ -31,7 +32,10 @@ def move_circle():
         delay(0.01)
 
 def move_rectangle():
-    print('rectangle')
+    move_top()
+    move_right()
+    move_bottom()
+    move_left()
 
 def move_triangle():
     print('triangle')
