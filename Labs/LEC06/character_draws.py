@@ -7,12 +7,6 @@ open_canvas(800, 600)
 image_path = join(dirname(abspath(__file__)), 'character.png')
 boy = load_image(image_path)
 
-clear_canvas()
-boy.draw(400, 300)
-update_canvas()
-delay(1)
-close_canvas()
-
 def draw_boy(x, y):
     clear_canvas()
     boy.draw(x, y)
@@ -39,15 +33,21 @@ def move_circle():
 def move_top():
     for x in range(50, 751, 5):
         draw_boy(x, 550)
+
+
 def move_right():
-    print('right')
-    pass
+    for y in range(550, 49, -5):
+        draw_boy(750, y)
+
+
 def move_bottom():
-    print('bottom')
-    pass    
+    for x in range(750, 49, -5):
+        draw_boy(x, 50)
+
+
 def move_left():
-    print('left')
-    pass
+    for y in range(50, 551, 5):
+        draw_boy(50, y)
 
 
 def move_rectangle():
