@@ -1,12 +1,13 @@
-from os.path import abspath, dirname, join
-
 from pico2d import *
 
 open_canvas(800, 600)
-image_path = join(dirname(abspath(__file__)), 'character.png')
-boy = load_image(image_path)
+boy = load_image('character.png')
 
-#어떤 이유에서인지 character.png파일이 제대로 불러와지지 않아 해당 부분은 ai를 통해 수정하였습니다.
+clear_canvas()
+boy.draw(400, 300)
+update_canvas()
+delay(1)
+close_canvas()
 
 clear_canvas()
 boy.draw(400, 300)
@@ -15,13 +16,13 @@ delay(1)
 close_canvas()
 
 def move_circle():
-    pass
+    print('circle')
 
 def move_rectangle():
-    pass
+    print('rectangle')
 
 def move_triangle():
-    pass
+    print('triangle')
 
 while True:
     move_circle()
