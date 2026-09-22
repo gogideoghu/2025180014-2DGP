@@ -13,6 +13,11 @@ update_canvas()
 delay(1)
 close_canvas()
 
+def draw_boy(x, y):
+    clear_canvas()
+    boy.draw(x, y)
+    update_canvas()
+    delay(0.01)
 
 degree = 0
 theta = math.radians(degree)
