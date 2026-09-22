@@ -1,3 +1,7 @@
+from pico2d import *
+
+open_canvas(800, 600)
+
 def move_circle():
     print('circle')
 
