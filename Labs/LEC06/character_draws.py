@@ -75,3 +75,7 @@ def move_triangle():
         y = 50 + (550 - 50) * t
         draw_boy(x, y)
 
+while True:
+    move_circle()
+    move_rectangle()
+    move_triangle()
