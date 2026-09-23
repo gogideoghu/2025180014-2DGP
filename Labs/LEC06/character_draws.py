@@ -7,8 +7,6 @@ open_canvas(800, 600)
 image_path = join(dirname(abspath(__file__)), 'character.png')
 boy = load_image(image_path)
 
-
-
 degree = 0
 theta = math.radians(degree)
 x = 400 + 200 * math.cos(theta)
