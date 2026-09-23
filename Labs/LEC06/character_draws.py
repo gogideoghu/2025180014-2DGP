@@ -61,7 +61,7 @@ def move_triangle():
         t = i / 100
         x = 400 + (750 - 400) * t
         y = 550 + (50 - 550) * t
-        draw_boy(x, y)
+
 
     for i in range(101):
         t = i / 100
