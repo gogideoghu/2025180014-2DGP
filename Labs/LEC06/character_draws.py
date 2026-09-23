@@ -63,7 +63,11 @@ def move_triangle():
         y = 550 + (50 - 550) * t
         draw_boy(x, y)
 
-
+    for i in range(101):
+        t = i / 100
+        x = 750 + (50 - 750) * t
+        y = 50
+        draw_boy(x, y)
 
     for i in range(101):
         t = i / 100
@@ -71,7 +75,3 @@ def move_triangle():
         y = 50 + (550 - 50) * t
         draw_boy(x, y)
 
-while True:
-    move_circle()
-    move_rectangle()
-    move_triangle()
