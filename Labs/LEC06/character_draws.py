@@ -7,11 +7,7 @@ open_canvas(800, 600)
 image_path = join(dirname(abspath(__file__)), 'character.png')
 boy = load_image(image_path)
 
-def draw_boy(x, y):
-    clear_canvas()
-    boy.draw(x, y)
-    update_canvas()
-    delay(0.01)
+
 
 degree = 0
 theta = math.radians(degree)
@@ -25,6 +21,10 @@ def move_circle():
         x = 400 + 200 * math.cos(theta)
         y = 300 + 200 * math.sin(theta)
 
+        clear_canvas()
+        boy.draw(x, y)
+        update_canvas()
+        delay(0.01)
 
 def move_top():
     for x in range(50, 751, 5):
