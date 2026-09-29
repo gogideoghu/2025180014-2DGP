@@ -26,7 +26,7 @@ def pose(name, index, count):
         return dict(leg=30 * height, arm=-125 * height,
                     lift=30 * height, lean=0)
     if name == "Attack":
-        angles = (0, 35, 65, -80, -100, -55, 0)
+        angles = (0, -35, -65, 80, 100, 55, 0)
         return dict(leg=10 * sin(pi * index / (count - 1)),
                     arm=angles[index], lift=0,
                     lean=-8 if index in (3, 4) else 0)

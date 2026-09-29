@@ -28,12 +28,16 @@ def make_frame(source, motion):
     legs = source.crop((14, 57, 37, 92))
     rotate_part(stage, legs, (x + 12, y + 57), (x + 24, y + 59), -motion["leg"])
     torso = source.crop((0, 0, 42, 60))
-    # Remove the hanging foreground arm; it is drawn separately below.
-    torso.paste((0, 0, 0, 0), (24, 38, 34, 60))
+    # Reconstruct the shirt/waist behind the foreground arm using the
+    # adjacent shirt pixels. Cutting away the shirt would leave a hole.
+    torso.paste((0, 0, 0, 0), (18, 36, 28, 60))
+    for row in range(36, 60):
+        color = source.getpixel((28, row))
+        torso.paste(color, (20, row, 28, row + 1))
     stage.alpha_composite(torso, (x, y))
     rotate_part(stage, legs, (x + 14, y + 57), (x + 25, y + 59), motion["leg"])
-    arm = source.crop((24, 37, 34, 64))
-    rotate_part(stage, arm, (x + 24, y + 37), (x + 28, y + 38), motion["arm"])
+    arm = source.crop((18, 36, 27, 62))
+    rotate_part(stage, arm, (x + 18, y + 36), (x + 23, y + 36), motion["arm"])
     if motion["lean"]:
         stage = stage.rotate(motion["lean"], Image.Resampling.NEAREST,
                              center=(64, GROUND - motion["lift"]))
