@@ -17,7 +17,7 @@ def load_ui_font():
     return None
 
 
-def render(sheet, font, animations, state, layout):
+def render(sheet, font, animations, state, layout, present=True):
     p.clear_canvas()
     p.draw_rectangle(0, 0, WIDTH, HEIGHT, 22, 29, 41, filled=True)
     p.draw_rectangle(30, 76, WIDTH - 30, HEIGHT - 100, 29, 39, 53, filled=True)
@@ -37,4 +37,5 @@ def render(sheet, font, animations, state, layout):
     if state.progress > 0:
         p.draw_rectangle(32, 20, 32 + int((WIDTH - 64) * state.progress), 25,
                          100, 221, 187, filled=True)
-    p.update_canvas()
+    if present:
+        p.update_canvas()
