@@ -20,9 +20,6 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
-
-# 시트의 아래쪽 행부터 0입니다.
-# 3: 오른쪽 걷기, 2: 왼쪽 걷기, 1: 오른쪽 달리기, 0: 왼쪽 달리기
 while running:
     for action in (3, 2, 1, 0):
         frame = 0
