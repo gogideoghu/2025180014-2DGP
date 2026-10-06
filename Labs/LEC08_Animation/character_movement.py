@@ -52,3 +52,7 @@ def update():
         x -= SPEED
     if SDLK_RIGHT in keys:
         x += SPEED
+    if SDLK_UP in keys:
+        y += SPEED
+    if SDLK_DOWN in keys:
+        y -= SPEED
