@@ -76,3 +76,13 @@ def update():
         frame = 0
     return action
 
+
+def draw(action):
+    clear_canvas()
+    background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
+    character.clip_draw(
+        frame * FRAME_WIDTH, action * FRAME_HEIGHT,
+        FRAME_WIDTH, FRAME_HEIGHT, x, y
+    )
+    update_canvas()
+
