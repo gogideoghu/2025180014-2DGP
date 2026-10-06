@@ -1,29 +1,96 @@
 from pico2d import *
 
 
-open_canvas()
-grass = load_image('grass.png')
+# Drill 9: 키 입력으로 소년을 움직이고 sprite sheet를 애니메이션한다.
+
+CANVAS_WIDTH = 800
+CANVAS_HEIGHT = 600
+FRAME_WIDTH = 100
+FRAME_HEIGHT = 100
+MOVE_SPEED = 5
+ANIMATION_DELAY = 0.05
+
+IDLE_RIGHT = 0
+IDLE_LEFT = 1
+RUN_RIGHT = 2
+RUN_LEFT = 3
+
+open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+background = load_image('TUK_GROUND.png')
 character = load_image('animation_sheet.png')
+
+running = True
+x = CANVAS_WIDTH // 2
+y = CANVAS_HEIGHT // 2
+frame = 0
+direction = IDLE_RIGHT
+moving = False
+pressed_keys = set()
+
+
+def keep_on_screen(value, low, high):
+    return max(low, min(value, high))
 
 
 def handle_events():
-    global running
+    global running, moving
 
-    # fill here
-
-    events = get_events()
-    for event in events:
+    for event in get_events():
         if event.type == SDL_QUIT:
             running = False
-        # fill here
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            running = False
+        elif event.type == SDL_KEYDOWN:
+            pressed_keys.add(event.key)
+            moving = True
+        elif event.type == SDL_KEYUP:
+            pressed_keys.discard(event.key)
+            moving = bool(pressed_keys)
 
 
-running = True
-x = 800 // 2
-frame = 0
+def update():
+    global x, y, direction, moving, frame
 
-# fill here
+    if SDLK_LEFT in pressed_keys:
+        x -= MOVE_SPEED
+    if SDLK_RIGHT in pressed_keys:
+        x += MOVE_SPEED
+    if SDLK_UP in pressed_keys:
+        y += MOVE_SPEED
+    if SDLK_DOWN in pressed_keys:
+        y -= MOVE_SPEED
 
+    if SDLK_LEFT in pressed_keys:
+        direction = IDLE_LEFT
+    elif SDLK_RIGHT in pressed_keys:
+        direction = IDLE_RIGHT
+
+    x = keep_on_screen(x, FRAME_WIDTH // 2, CANVAS_WIDTH - FRAME_WIDTH // 2)
+    y = keep_on_screen(y, FRAME_HEIGHT // 2, CANVAS_HEIGHT - FRAME_HEIGHT // 2)
+
+    if moving:
+        action = RUN_LEFT if direction == IDLE_LEFT else RUN_RIGHT
+        frame = (frame + 1) % 8
+    else:
+        action = direction
+        frame = 0
+    return action
+
+
+def draw(action):
+    clear_canvas()
+    background.draw(CANVAS_WIDTH // 2, CANVAS_HEIGHT // 2)
+    character.clip_draw(
+        frame * FRAME_WIDTH, action * FRAME_HEIGHT,
+        FRAME_WIDTH, FRAME_HEIGHT, x, y
+    )
+    update_canvas()
+
+
+while running:
+    handle_events()
+    draw(update())
+    delay(ANIMATION_DELAY)
 
 close_canvas()
 
