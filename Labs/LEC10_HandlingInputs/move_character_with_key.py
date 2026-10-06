@@ -22,4 +22,7 @@ character = load_image('animation_sheet.png')
 running = True
 x = CANVAS_WIDTH // 2
 y = CANVAS_HEIGHT // 2
+frame = 0
+direction = IDLE_RIGHT
+moving = False
 
