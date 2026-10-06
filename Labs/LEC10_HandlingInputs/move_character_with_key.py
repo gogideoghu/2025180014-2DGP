@@ -33,11 +33,14 @@ def keep_on_screen(value, low, high):
 
 
 def handle_events():
-    global running
+    global running, moving
 
     for event in get_events():
         if event.type == SDL_QUIT:
             running = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
+        elif event.type == SDL_KEYDOWN:
+            pressed_keys.add(event.key)
+            moving = True
 
