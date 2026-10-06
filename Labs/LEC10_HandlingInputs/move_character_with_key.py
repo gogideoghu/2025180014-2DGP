@@ -26,3 +26,7 @@ frame = 0
 direction = IDLE_RIGHT
 moving = False
 
+
+def keep_on_screen(value, low, high):
+    return max(low, min(value, high))
+
