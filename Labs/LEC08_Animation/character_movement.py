@@ -16,3 +16,5 @@ RUN_RIGHT = 2
 RUN_LEFT = 3
 
 open_canvas(WIDTH, HEIGHT)
+background = load_image('TUK_GROUND.png')
+boy = load_image('animation_sheet.png')
