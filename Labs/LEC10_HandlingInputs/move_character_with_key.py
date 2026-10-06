@@ -43,4 +43,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN:
             pressed_keys.add(event.key)
             moving = True
+        elif event.type == SDL_KEYUP:
+            pressed_keys.discard(event.key)
+            moving = bool(pressed_keys)
 
