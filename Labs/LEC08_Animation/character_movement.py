@@ -64,3 +64,11 @@ def update():
 
     x = clamp(x, FRAME_WIDTH // 2, WIDTH - FRAME_WIDTH // 2)
     y = clamp(y, FRAME_HEIGHT // 2, HEIGHT - FRAME_HEIGHT // 2)
+
+    if keys:
+        action = RUN_LEFT if facing == IDLE_LEFT else RUN_RIGHT
+        frame = (frame + 1) % 8
+    else:
+        action = facing
+        frame = 0
+    return action
