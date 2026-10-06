@@ -15,3 +15,7 @@ IDLE_LEFT = 1
 RUN_RIGHT = 2
 RUN_LEFT = 3
 
+open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+background = load_image('TUK_GROUND.png')
+character = load_image('animation_sheet.png')
+
