@@ -14,3 +14,5 @@ IDLE_RIGHT = 0
 IDLE_LEFT = 1
 RUN_RIGHT = 2
 RUN_LEFT = 3
+
+open_canvas(WIDTH, HEIGHT)
