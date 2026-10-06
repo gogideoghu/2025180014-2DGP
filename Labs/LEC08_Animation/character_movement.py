@@ -29,3 +29,11 @@ keys = set()
 
 def clamp(value, low, high):
     return max(low, min(value, high))
+
+
+def handle_events():
+    global running
+
+    for event in get_events():
+        if event.type == SDL_QUIT:
+            running = False
