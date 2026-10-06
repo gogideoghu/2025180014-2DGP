@@ -47,3 +47,12 @@ def handle_events():
             pressed_keys.discard(event.key)
             moving = bool(pressed_keys)
 
+
+def update():
+    global x, y, direction, moving, frame
+
+    if SDLK_LEFT in pressed_keys:
+        x -= MOVE_SPEED
+    if SDLK_RIGHT in pressed_keys:
+        x += MOVE_SPEED
+
