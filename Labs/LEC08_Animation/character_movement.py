@@ -56,3 +56,8 @@ def update():
         y += SPEED
     if SDLK_DOWN in keys:
         y -= SPEED
+
+    if SDLK_LEFT in keys:
+        facing = IDLE_LEFT
+    elif SDLK_RIGHT in keys:
+        facing = IDLE_RIGHT
