@@ -86,3 +86,11 @@ def draw(action):
     )
     update_canvas()
 
+
+while running:
+    handle_events()
+    draw(update())
+    delay(ANIMATION_DELAY)
+
+close_canvas()
+
