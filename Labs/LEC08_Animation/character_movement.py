@@ -22,3 +22,6 @@ boy = load_image('animation_sheet.png')
 running = True
 x = WIDTH // 2
 y = HEIGHT // 2
+frame = 0
+facing = IDLE_RIGHT
+keys = set()
