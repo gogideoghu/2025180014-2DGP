@@ -5,3 +5,5 @@ from pico2d import *
 
 WIDTH = 800
 HEIGHT = 600
+FRAME_WIDTH = 100
+FRAME_HEIGHT = 100
