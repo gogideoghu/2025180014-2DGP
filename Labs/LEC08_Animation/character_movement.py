@@ -61,3 +61,6 @@ def update():
         facing = IDLE_LEFT
     elif SDLK_RIGHT in keys:
         facing = IDLE_RIGHT
+
+    x = clamp(x, FRAME_WIDTH // 2, WIDTH - FRAME_WIDTH // 2)
+    y = clamp(y, FRAME_HEIGHT // 2, HEIGHT - FRAME_HEIGHT // 2)
