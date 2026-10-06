@@ -60,3 +60,8 @@ def update():
     if SDLK_DOWN in pressed_keys:
         y -= MOVE_SPEED
 
+    if SDLK_LEFT in pressed_keys:
+        direction = IDLE_LEFT
+    elif SDLK_RIGHT in pressed_keys:
+        direction = IDLE_RIGHT
+
