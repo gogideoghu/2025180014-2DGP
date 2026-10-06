@@ -72,3 +72,19 @@ def update():
         action = facing
         frame = 0
     return action
+
+
+def draw(action):
+    clear_canvas()
+    background.draw(WIDTH // 2, HEIGHT // 2)
+    boy.clip_draw(frame * FRAME_WIDTH, action * FRAME_HEIGHT,
+                  FRAME_WIDTH, FRAME_HEIGHT, x, y)
+    update_canvas()
+
+
+while running:
+    handle_events()
+    draw(update())
+    delay(DELAY)
+
+close_canvas()
