@@ -43,3 +43,12 @@ def handle_events():
             keys.add(event.key)
         elif event.type == SDL_KEYUP:
             keys.discard(event.key)
+
+
+def update():
+    global x, y, frame, facing
+
+    if SDLK_LEFT in keys:
+        x -= SPEED
+    if SDLK_RIGHT in keys:
+        x += SPEED
