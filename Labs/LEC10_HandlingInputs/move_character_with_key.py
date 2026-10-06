@@ -68,3 +68,11 @@ def update():
     x = keep_on_screen(x, FRAME_WIDTH // 2, CANVAS_WIDTH - FRAME_WIDTH // 2)
     y = keep_on_screen(y, FRAME_HEIGHT // 2, CANVAS_HEIGHT - FRAME_HEIGHT // 2)
 
+    if moving:
+        action = RUN_LEFT if direction == IDLE_LEFT else RUN_RIGHT
+        frame = (frame + 1) % 8
+    else:
+        action = direction
+        frame = 0
+    return action
+
