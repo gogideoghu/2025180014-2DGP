@@ -25,3 +25,7 @@ y = HEIGHT // 2
 frame = 0
 facing = IDLE_RIGHT
 keys = set()
+
+
+def clamp(value, low, high):
+    return max(low, min(value, high))
