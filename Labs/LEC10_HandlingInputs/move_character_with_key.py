@@ -65,3 +65,6 @@ def update():
     elif SDLK_RIGHT in pressed_keys:
         direction = IDLE_RIGHT
 
+    x = keep_on_screen(x, FRAME_WIDTH // 2, CANVAS_WIDTH - FRAME_WIDTH // 2)
+    y = keep_on_screen(y, FRAME_HEIGHT // 2, CANVAS_HEIGHT - FRAME_HEIGHT // 2)
+
