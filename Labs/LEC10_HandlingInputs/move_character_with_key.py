@@ -55,4 +55,8 @@ def update():
         x -= MOVE_SPEED
     if SDLK_RIGHT in pressed_keys:
         x += MOVE_SPEED
+    if SDLK_UP in pressed_keys:
+        y += MOVE_SPEED
+    if SDLK_DOWN in pressed_keys:
+        y -= MOVE_SPEED
 
