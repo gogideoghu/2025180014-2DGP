@@ -25,6 +25,7 @@ y = CANVAS_HEIGHT // 2
 frame = 0
 direction = IDLE_RIGHT
 moving = False
+pressed_keys = set()
 
 
 def keep_on_screen(value, low, high):
