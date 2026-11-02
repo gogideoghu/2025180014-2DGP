@@ -1,10 +1,20 @@
-world = [[], []] # layers for game objects
+"""Objects owned by the current game scene.
 
-def add_object(o, depth):
+Layer 0 is for background objects and layer 1 is for actors/projectiles.
+"""
+
+BACKGROUND_LAYER = 0
+FOREGROUND_LAYER = 1
+
+world = [[], []]
+
+def add_object(o, depth=FOREGROUND_LAYER):
+    """Add one object to a drawing/update layer."""
     world[depth].append(o)
 
-def add_objects(ol, depth):
-    world[depth] += ol
+def add_objects(objects, depth=FOREGROUND_LAYER):
+    """Add several objects to a drawing/update layer."""
+    world[depth] += objects
 
 def remove_object(o):
     for layer in world:
@@ -12,17 +22,19 @@ def remove_object(o):
             layer.remove(o)
             return
 
-    raise Exception("Object not found")
+    raise ValueError('Cannot remove an object that is not in the game world')
 
 
 def update():
     for layer in world:
-        for o in layer:
+        # An object may remove itself while updating (for example, a ball
+        # that has gone outside the canvas), so iterate over a shallow copy.
+        for o in list(layer):
             o.update()
 
 def render():
     for layer in world:
-        for o in layer:
+        for o in list(layer):
             o.draw()
 
 
