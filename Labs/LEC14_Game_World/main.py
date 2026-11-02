@@ -21,6 +21,8 @@ def handle_events():
 def reset_world():
     global boy
 
+    game_world.clear()
+
     grass = Grass()
     game_world.add_object(grass, game_world.BACKGROUND_LAYER)
 

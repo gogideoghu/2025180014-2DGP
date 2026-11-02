@@ -8,6 +8,13 @@ FOREGROUND_LAYER = 1
 
 world = [[], []]
 
+
+def clear():
+    """Remove all scene objects while preserving the configured layers."""
+    for layer in world:
+        layer.clear()
+
+
 def add_object(o, depth=FOREGROUND_LAYER):
     """Add one object to a drawing/update layer."""
     world[depth].append(o)
