@@ -1,16 +1,23 @@
 from math import pi
+from pathlib import Path
 
 from pico2d import get_canvas_width, get_time, load_image
 from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
                   SDLK_SPACE)
 from transitions import Machine
 
+from ball import Ball
+import game_world
+
+
+ASSET_DIR = Path(__file__).resolve().parent
+
 
 class Boy:
     def __init__(self):
         self.x, self.y = 400, 90
         self.frame = 0
-        self.image = load_image('animation_sheet.png')
+        self.image = load_image(str(ASSET_DIR / 'animation_sheet.png'))
         self.idle_started_at = get_time()
         self.dir = 0
         self.face_dir = 1
@@ -45,9 +52,11 @@ class Boy:
 
     def handle_event(self, event):
         if (event.type == SDL_KEYDOWN and
-                event.key == SDLK_SPACE and
-                self.state == 'SLEEP'):
-            self.wake_up()
+                event.key == SDLK_SPACE):
+            if self.state == 'SLEEP':
+                self.wake_up()
+            else:
+                self.fire_ball()
             return
 
         if (event.type not in (SDL_KEYDOWN, SDL_KEYUP) or
@@ -81,6 +90,11 @@ class Boy:
             self.frame = (self.frame + 1) % 8
             self.x += self.dir * 5
             self.x = max(25, min(get_canvas_width() - 25, self.x))
+
+    def fire_ball(self):
+        """Fire a ball in the direction the boy is currently facing."""
+        ball = Ball(self.x, self.y, self.face_dir * 10)
+        game_world.add_object(ball, game_world.FOREGROUND_LAYER)
 
     def draw(self):
         if self.state == 'SLEEP':
