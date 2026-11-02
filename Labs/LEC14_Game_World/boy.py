@@ -4,7 +4,6 @@ from pathlib import Path
 from pico2d import get_canvas_width, get_time, load_image
 from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
                   SDLK_SPACE)
-from transitions import Machine
 
 from ball import Ball
 import game_world
@@ -23,22 +22,7 @@ class Boy:
         self.face_dir = 1
         self.pressed_keys = set()
 
-        self.machine = Machine(
-            model=self,
-            states=['IDLE', 'SLEEP', 'RUN'],
-            transitions=[
-                {'trigger': 'fall_asleep',
-                 'source': 'IDLE', 'dest': 'SLEEP'},
-                {'trigger': 'wake_up',
-                 'source': 'SLEEP', 'dest': 'IDLE'},
-                {'trigger': 'start_run',
-                 'source': ['IDLE', 'SLEEP'], 'dest': 'RUN'},
-                {'trigger': 'stop_run',
-                 'source': 'RUN', 'dest': 'IDLE'},
-            ],
-            initial='IDLE',
-            auto_transitions=False,
-        )
+        self.state = 'IDLE'
 
     def on_enter_IDLE(self):
         self.idle_started_at = get_time()
@@ -49,6 +33,26 @@ class Boy:
 
     def on_enter_RUN(self):
         self.frame = 0
+
+    def _set_state(self, state):
+        self.state = state
+        getattr(self, f'on_enter_{state}')()
+
+    def fall_asleep(self):
+        if self.state == 'IDLE':
+            self._set_state('SLEEP')
+
+    def wake_up(self):
+        if self.state == 'SLEEP':
+            self._set_state('IDLE')
+
+    def start_run(self):
+        if self.state in ('IDLE', 'SLEEP'):
+            self._set_state('RUN')
+
+    def stop_run(self):
+        if self.state == 'RUN':
+            self._set_state('IDLE')
 
     def handle_event(self, event):
         if (event.type == SDL_KEYDOWN and
